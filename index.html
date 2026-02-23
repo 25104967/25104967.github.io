@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FisH On! · Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #2b2b2b;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .site-wrapper {
+            max-width: 1300px;
+            margin: 20px auto;
+            background-color: #f5f5e9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #8b5a2b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.12"/></svg>');
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: multiply;
+        }
+
+        .content {
+            position: relative;
+            z-index: 5;
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        .heavy-title,
+        .nav-links a,
+        .badge,
+        .hero-btn {
+            font-family: 'Impact', 'Arial Narrow', 'Bebas Neue', 'Oswald', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 4.2rem;
+            line-height: 0.9;
+            color: #1a3b1a;
+            margin: 0;
+            text-shadow: 3px 3px 0 rgba(230, 126, 34, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #8b5a2b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            background: repeating-linear-gradient(45deg, rgba(139, 90, 43, 0.05) 0px, rgba(139, 90, 43, 0.05) 10px, transparent 10px, transparent 20px);
+            padding: 1rem 1rem 0.5rem 1rem;
+        }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 3.8rem;
+            color: #e67e22;
+            transform: rotate(-5deg);
+            filter: drop-shadow(2px 4px 0 #2b2b2b);
+        }
+
+        .logo-icon i {
+            background: #2c5f2d;
+            padding: 0.3rem;
+            border-radius: 50%;
+            color: #f5f5e9;
+            border: 3px solid #8b5a2b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 1.7rem;
+        }
+
+        .nav-links a {
+            color: #2b2b2b;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #e67e22;
+            color: #1a3b1a;
+        }
+
+        .hero-module {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2.5rem 0 3rem;
+            background: rgba(44, 95, 45, 0.08);
+            border: 2px dashed #8b5a2b;
+            padding: 2rem 1.5rem;
+            justify-content: center;
+            background-image: linear-gradient(145deg, #f5f5e9 0%, #ece9d8 100%);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-btn {
+            flex: 1 1 250px;
+            background: #1a3b1a;
+            border: 4px solid #8b5a2b;
+            padding: 1.5rem 0.5rem;
+            text-align: center;
+            font-size: 2.3rem;
+            color: #f5f5e9;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.15s;
+            box-shadow: 8px 8px 0 #2b2b2b;
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+
+        .hero-btn i {
+            margin-right: 12px;
+            color: #e67e22;
+            font-size: 2.3rem;
+        }
+
+        .hero-btn:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 #2b2b2b;
+            background: #2b5a2b;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            border-top: 6px double #8b5a2b;
+            padding: 2rem 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: linear-gradient(0deg, #dad3bc, #f5f5e9);
+        }
+
+        .footer-note {
+            background: #2c5f2d;
+            color: #f5f5e9;
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+            border: 3px solid #e67e22;
+            box-shadow: 5px 5px 0 #2b2b2b;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+
+        <div class="content">
+            <div class="top-header">
+                <div class="logo-block">
+                    <span class="logo-icon"><i class="fas fa-fish"></i></span>
+                    <h1>FisH On!</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="Homepage.html">HOME</a>
+                    <a href="tutorials.html">TUTORIALS</a>
+                </div>
+            </div>
+
+            <div
+                style="margin: 0.5rem 0 0 0; font-size: 1.9rem; font-weight: bold; color: #1a3b1a; background: #e67e22; display: inline-block; padding: 0.2rem 2rem; border: 3px solid #2b2b2b; transform: rotate(-1deg); letter-spacing: 2px;">
+                <i class="fas fa-water"></i> LEARN TO FISH LIKE A PRO <i class="fas fa-hook"></i>
+            </div>
+
+            <div class="hero-module">
+                <a href="tutorials.html" class="hero-btn"><i class="fas fa-play-circle"></i> WATCH TUTORIALS</a>
+            </div>
+
+            <div style="text-align: center; padding: 2rem; background: #2c5f2d20; border: 3px solid #8b5a2b;">
+                <h2 style="color: #1a3b1a; border: none;">CLICK THE TUTORIAL BUTTON</h2>
+                <p style="font-size: 1.3rem;">To get access to fishing video tutorials →</p>
+            </div>
+
+            <div class="footer">
+                <div class="footer-note"><i class="fas fa-fish"></i> FISH ON! TUTORIALS</div>
+                <div style="font-weight: bold; color: #2b2b2b; font-size: 1.4rem;">🎣 SINCE 2025</div>
+            </div>
+        </div>
+    </div>
+
+    <span style="display:none;">v</span>
+</body>
+
+</html>

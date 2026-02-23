@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FisH On! · Video Tutorials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #2b2b2b;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .site-wrapper {
+            max-width: 1300px;
+            margin: 20px auto;
+            background-color: #f5f5e9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #8b5a2b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .site-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.12"/></svg>');
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: multiply;
+        }
+
+        .content {
+            position: relative;
+            z-index: 5;
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        .nav-links a {
+            font-family: 'Impact', 'Arial Narrow', 'Bebas Neue', 'Oswald', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 4.2rem;
+            line-height: 0.9;
+            color: #1a3b1a;
+            margin: 0;
+            text-shadow: 3px 3px 0 rgba(230, 126, 34, 0.3);
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            color: #2c5f2d;
+            border-bottom: 6px solid #e67e22;
+            display: inline-block;
+            padding-right: 20px;
+            margin: 2rem 0 2rem 0;
+        }
+
+        h2 i {
+            color: #8b5a2b;
+            margin-right: 10px;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            color: #1a3b1a;
+            margin: 2.5rem 0 1.5rem 0;
+            border-left: 10px solid #e67e22;
+            padding-left: 15px;
+            background: rgba(44, 95, 45, 0.1);
+            padding: 10px 0 10px 15px;
+        }
+
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #8b5a2b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            background: repeating-linear-gradient(45deg, rgba(139, 90, 43, 0.05) 0px, rgba(139, 90, 43, 0.05) 10px, transparent 10px, transparent 20px);
+            padding: 1rem 1rem 0.5rem 1rem;
+        }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 3.8rem;
+            color: #e67e22;
+            transform: rotate(-5deg);
+            filter: drop-shadow(2px 4px 0 #2b2b2b);
+        }
+
+        .logo-icon i {
+            background: #2c5f2d;
+            padding: 0.3rem;
+            border-radius: 50%;
+            color: #f5f5e9;
+            border: 3px solid #8b5a2b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 1.7rem;
+        }
+
+        .nav-links a {
+            color: #2b2b2b;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #e67e22;
+            color: #1a3b1a;
+        }
+
+        .nav-links a.active {
+            border-bottom-color: #e67e22;
+            color: #1a3b1a;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 1rem 0 3rem;
+        }
+
+        .video-card {
+            background: #1a3b1a;
+            border: 4px solid #8b5a2b;
+            padding: 1rem;
+            box-shadow: 8px 8px 0 #2b2b2b;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 3px solid #e67e22;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-info {
+            padding: 1rem 0.5rem 0.5rem;
+            color: #f5f5e9;
+        }
+
+        .video-info h4 {
+            font-size: 1.6rem;
+            color: #e67e22;
+            margin-bottom: 0.3rem;
+            font-family: 'Impact', 'Arial Narrow', sans-serif;
+        }
+
+        .video-info p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.8rem;
+            color: #8b5a2b;
+            font-weight: bold;
+        }
+
+        .badge {
+            background: #e67e22;
+            color: #1a3b1a;
+            padding: 0.2rem 1rem;
+            font-weight: bold;
+            border: 2px solid #f5f5e9;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 1rem 0 2rem;
+            font-size: 1.3rem;
+            color: #e67e22;
+            background: #1a3b1a;
+            padding: 0.5rem 2rem;
+            text-decoration: none;
+            border: 3px solid #8b5a2b;
+            box-shadow: 4px 4px 0 #2b2b2b;
+        }
+
+        .back-link i {
+            margin-right: 10px;
+        }
+
+        .back-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #2b2b2b;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            border-top: 6px double #8b5a2b;
+            padding: 2rem 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: linear-gradient(0deg, #dad3bc, #f5f5e9);
+        }
+
+        .footer-note {
+            background: #2c5f2d;
+            color: #f5f5e9;
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+            border: 3px solid #e67e22;
+            box-shadow: 5px 5px 0 #2b2b2b;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site-wrapper">
+        <div class="content">
+            <div class="top-header">
+                <div class="logo-block">
+                    <span class="logo-icon"><i class="fas fa-fish"></i></span>
+                    <h1>FisH On!</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="homepage.html">HOME</a>
+                    <a href="tutorials.html" class="active">TUTORIALS</a>
+                </div>
+            </div>
+
+            <div
+                style="margin: 1rem 0; background: #e67e22; display: inline-block; padding: 0.2rem 2rem; border: 3px solid #2b2b2b;">
+                <h2 style="border: none; margin: 0; color: #1a3b1a;"><i class="fas fa-play"></i> VIDEO TUTORIALS
+                </h2>
+            </div>
+
+            <a href="homepage.html" class="back-link"><i class="fas fa-arrow-left"></i> BACK TO HOME</a>
+
+            <h3><i class="fas fa-graduation-cap"></i> BEGINNER FISHING GUIDES</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/Vo1YRxxAx2g" title="Fishing for Beginners"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Fishing 101: Complete Beginner's Guide</h4>
+                        <p>Learn the basics: rods, reels, lines, and first cast</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 8:43</span>
+                            <span class="badge">BEGINNER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/MekH6YMbfc4" title="Casting Tips"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>How to Cast a Spinning Reel</h4>
+                        <p>Perfect your casting technique for beginners</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 1:09</span>
+                            <span class="badge">BEGINNER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/rhhBPNUXYis" title="Fishing Gear Explained"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Fishing Gear Explained: What You Need</h4>
+                        <p>Complete guide to rods, reels, lines and tackle</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 4:59</span>
+                            <span class="badge">BEGINNER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-khanda"></i> KNOTS & RIGS</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/OsBOnG9qp3c" title="Fishing Knots"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>5 Must-Know Fishing Knots</h4>
+                        <p>Palomar, Improved Clinch, Uni Knot and more</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 10:33</span>
+                            <span class="badge">KNOTS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/Xt2wB7H_9Zw" title="Advanced Knots"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Advanced Knot for Big Fish</h4>
+                        <p>The FG knot</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 16:21</span>
+                            <span class="badge">KNOTS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/KQ0oVLZ44s0" title="Rigging" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>How to Tie Fishing Rigs</h4>
+                        <p>Carolina rig, Texas rig, drop shot and more</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 7:17</span>
+                            <span class="badge">KNOTS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-fish"></i> BASS FISHING</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/g7EPld7rVwU" title="Bass Fishing Tips"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Spring Bass Fishing Tips</h4>
+                        <p>Topwater techniques for largemouth bass</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 13:30</span>
+                            <span class="badge">BASS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/VrTW2VQLgQk" title="Summer Bass"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Summer Bass Fishing Secrets</h4>
+                        <p>Deep water techniques for hot weather</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 8:32</span>
+                            <span class="badge">BASS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/ucX1Ia1SnEs" title="Lure Selection"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Bass Lure Selection Guide</h4>
+                        <p>When to use crankbaits, spinnerbaits, and plastics</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 13:06</span>
+                            <span class="badge">BASS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-anchor"></i> SALTWATER FISHING</h3>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/x_fNuU_EEy0" title="Saltwater Fishing"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Saltwater Surf Fishing Basics</h4>
+                        <p>Catching stripers, redfish, and more from shore</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 10:10</span>
+                            <span class="badge">SALTWATER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/izY_kl3EUjk" title="Inshore Fishing"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Inshore Saltwater Fishing</h4>
+                        <p>Redfish, speckled trout, and flounder tactics</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 12:16</span>
+                            <span class="badge">SALTWATER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube-nocookie.com/embed/jca9uzknFDY" title="Offshore Fishing"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>Offshore Fishing for Beginners</h4>
+                        <p>Bottom fishing, trolling, and deep sea basics</p>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 5:50</span>
+                            <span class="badge">SALTWATER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="footer-note"><i class="fas fa-fish"></i> FISH ON! TUTORIALS</div>
+                <div style="font-weight: bold; color: #2b2b2b; font-size: 1.4rem;">🎣 12 VIDEO TUTORIALS</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
